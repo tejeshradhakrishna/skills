@@ -1,0 +1,31 @@
+name: Validate
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  validate:
+    name: Validate skills
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate skill set, manifests, and version sync
+        run: bash scripts/validate-skills.sh
+
+      - name: List skills
+        run: bash scripts/list-skills.sh
+
+      - name: Build skill packages
+        run: bash scripts/package-skills.sh
+
+      - name: Upload skill packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: skill-packages
+          path: dist/*.zip
+          if-no-files-found: error

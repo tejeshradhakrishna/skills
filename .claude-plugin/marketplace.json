@@ -1,0 +1,23 @@
+{
+  "name": "tejeshradhakrishna",
+  "owner": {
+    "name": "Tejesh Radhakrishna",
+    "url": "https://github.com/tejeshradhakrishna"
+  },
+  "description": "Tejesh Radhakrishna's agent skills — rigorous, portable, and honest by design.",
+  "plugins": [
+    {
+      "name": "tejesh-skills",
+      "source": "./",
+      "description": "Two explicit-invocation skills: forge-decisions turns a shaky plan into documented decisions, and relay-context carries verified state across a handoff. Runs the same on ChatGPT, Codex, and Claude.",
+      "category": "engineering",
+      "keywords": [
+        "skills",
+        "decision-making",
+        "handoff",
+        "context-engineering",
+        "ai-engineering"
+      ]
+    }
+  ]
+}

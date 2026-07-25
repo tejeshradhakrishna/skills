@@ -1,0 +1,24 @@
+{
+  "name": "tejesh-skills",
+  "version": "0.1.0",
+  "description": "Two explicit-invocation agent skills by Tejesh Radhakrishna: forge-decisions pressure-tests a plan into documented decisions, and relay-context snapshots verified state for a clean handoff. Same behaviour on ChatGPT, Codex, and Claude.",
+  "author": {
+    "name": "Tejesh Radhakrishna",
+    "url": "https://github.com/tejeshradhakrishna"
+  },
+  "homepage": "https://github.com/tejeshradhakrishna/skills",
+  "repository": "https://github.com/tejeshradhakrishna/skills",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "decision-making",
+    "handoff",
+    "context-engineering",
+    "planning",
+    "ai-engineering"
+  ],
+  "skills": [
+    "./skills/general/forge-decisions",
+    "./skills/general/relay-context"
+  ]
+}

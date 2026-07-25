@@ -1,0 +1,14 @@
+interface:
+  display_name: Relay Context
+  short_description: Create a verified brief for seamless continuation
+  default_prompt: Use $relay-context to create a verified continuity brief for the
+    next session, agent, or platform.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  allow_implicit_invocation: false
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
