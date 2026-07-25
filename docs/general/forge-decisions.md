@@ -23,10 +23,11 @@ npx skills update forge-decisions
 
 I built `forge-decisions` for the moment a plan looks finished but still has soft spots. It runs a
 disciplined interview — one question per turn, each with a recommended answer and the trade-off that decides
-it — and works through the plan's decisions in dependency order, hardest and most irreversible first. When
-it's done, the plan isn't just agreed; it's documented: a decision brief, a `CONTEXT.md` glossary where the
-work has its own vocabulary, and ADRs for the choices that would puzzle someone later. It's a way to stop
-building the wrong thing before a single line is written.
+it — and works through the plan's decisions in dependency order, hardest and most irreversible first. Run it
+on a whole plan, or point it at a single track: just resolve the open decisions, sharpen a domain's language,
+or settle one architectural choice. When it's done, the plan isn't just agreed; it's documented: a decision
+brief, a `CONTEXT.md` glossary where the work has its own vocabulary, and ADRs for the choices that would
+puzzle someone later. It's a way to stop building the wrong thing before a single line is written.
 
 ## Reach for it when
 
@@ -44,17 +45,21 @@ The interview is strict on purpose: one precise question, one recommendation, th
 it waits for you. It digs facts out of the conversation, the files, and the code rather than asking you
 things it can check itself, and it keeps verified facts, hard constraints, your decisions, assumptions, and
 open unknowns clearly apart. It won't manufacture agreement, file writes, owners, dates, or test results,
-and it redacts anything sensitive it runs across.
+and it redacts anything sensitive it runs across. When the work has its own vocabulary, it sharpens that
+language into a glossary; and it writes an ADR only for a choice that's genuinely hard to reverse, not for
+routine ones.
 
-Three optional dials in your request steer it: **focus** (which plan), **depth** (`rapid`, `standard`, or
-`exhaustive`), and **delivery** (`inline`, `file`, or `both`).
+Four optional controls in your request steer it: **focus** (which plan), **track** (`full`, `interview`,
+`domain`, `adr`, or `audit`), **depth** (`rapid`, `standard`, or `exhaustive`), and **delivery** (`inline`,
+`file`, or `both`).
 
 ## Signs it worked
 
 - Every decision that matters ends up either resolved or consciously deferred with a reason and a trigger to
   revisit it.
 - You walk away with a decision brief — plus `CONTEXT.md` and ADRs where they're warranted — that all line
-  up with each other.
+  up with each other. The artifacts scale to the work: a split-out register, a `CONTEXT-MAP.md`, or a
+  resumable `FORGE-STATE.md` appear only when the effort actually calls for them.
 - The questions earned their place: each one actually moved the plan, none were idle preferences.
 
 ## Pairs with

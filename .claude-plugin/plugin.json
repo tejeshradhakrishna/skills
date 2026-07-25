@@ -1,6 +1,6 @@
 {
   "name": "tejesh-skills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Two explicit-invocation agent skills by Tejesh Radhakrishna: forge-decisions pressure-tests a plan into documented decisions, and relay-context snapshots verified state for a clean handoff. Same behaviour on ChatGPT, Codex, and Claude.",
   "author": {
     "name": "Tejesh Radhakrishna",
