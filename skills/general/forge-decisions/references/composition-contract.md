@@ -1,95 +1,53 @@
 # Composition Contract
 
-Use this contract when the user wants only one Forge capability or when a larger workflow needs a bounded decision-forging phase. It preserves Forge's rigor without forcing the full artifact set.
+Use when another workflow needs a bounded Forge capability. Preserve rigor without forcing the full artifact set.
 
-## Track interface
+| Track | Input | Required result |
+| --- | --- | --- |
+| `interview` | Focus, evidence, constraints, mode | Resolved decision records and next safe action |
+| `domain` | Context, language, code or artifacts | Canonical glossary, boundaries, invariants, and scenarios |
+| `adr` | Candidate, alternatives, constraints, evidence | Qualifying compact ADR or explicit reason to skip |
+| `audit` | Existing plan or decision artifacts | Prioritized gaps, contradictions, and next decision |
+| `full` | Plan, design, architecture, or proposal | Approval-ready decision plan with justified supporting artifacts |
 
-| Track | Input | Required behavior | Output |
-| --- | --- | --- | --- |
-| `interview` | Focus, known facts, constraints, desired depth | Resolve the decision graph one question at a time | Confirmed decision records and next safe action |
-| `domain` | Context, existing language, code or artifacts | Sharpen terms, boundaries, invariants, and scenarios | Updated or rendered context glossary and map |
-| `adr` | Candidate decision, alternatives, constraints, evidence | Resolve the choice and apply the ADR qualification gate | Compact ADR or an explicit reason to skip it |
-| `audit` | Existing plan or decision artifacts | Inspect coverage, evidence, contradictions, and artifact consistency | Prioritized gap report; one decision question if needed |
-| `full` | Plan, design, architecture, or proposal | Combine all relevant tracks adaptively | Decision-complete brief and justified supporting artifacts |
-
-## Inputs
-
-Accept these controls when supplied:
+Accept natural language or:
 
 ```yaml
-focus: <decision or plan>
+focus: <target>
 track: full | interview | domain | adr | audit
-depth: rapid | standard | exhaustive
-delivery: inline | file | both
-known_facts:
-  - <claim and source>
-constraints:
-  - <constraint>
-existing_decisions:
-  - <decision and status>
-desired_artifacts:
-  - <artifact>
+mode: quick | standard | comprehensive
+delivery: file | inline | both
+known_facts: [<claim and source>]
+constraints: [<constraint>]
+existing_decisions: [<decision and status>]
+desired_artifacts: [<artifact>]
 ```
 
-Do not require this syntax; infer controls from natural language.
+`depth: rapid | standard | exhaustive` remains accepted as a compatibility alias for `mode`. Default delivery is `file`.
 
-## Guarantees
+Every track must inspect evidence, ask no more than one decision per turn, recommend one answer, separate evidence from assumptions, preserve dependencies and revisit conditions, avoid implementation until the current plan version is approved, and provide complete visible output when file delivery is unavailable. When a parent workflow supplies a mode, do not ask again; otherwise present the standard three-mode choice.
 
-Every track must:
+Start with the narrowest sufficient track. Promote only when an omitted branch creates a material blind spot, and explain the promotion. Activate domain modeling when terminology blocks a decision and ADR handling only after a candidate emerges. Audit existing work before reopening it; preserve still-valid decisions. Return control at the track's stop condition.
 
-- Inspect available evidence before asking.
-- Ask no more than one decision question per turn.
-- Recommend one answer.
-- Keep facts, decisions, assumptions, and unknowns distinct.
-- Record dependencies, consequences, and revisit conditions.
-- Avoid implementation until separately requested.
-- Return complete inline content when file delivery is unavailable.
+Pass between tracks only the compact state: objective and mode, verified evidence and conflicts, node dispositions, canonical terms, affected contexts, artifact paths and versions, approval state, and highest-value unresolved node.
 
-Tracks may share the evidence ledger, decision graph, canonical language, and artifact IDs. Do not duplicate conflicting state between tracks.
-
-## Composition rules
-
-- Start with the narrowest track that satisfies the request.
-- Promote to `full` only when the user asks or when omitted branches would create a material blind spot; explain the reason.
-- Activate `domain` inside another track when terminology or boundaries block a decision.
-- Activate `adr` only after a candidate passes the qualification gate.
-- Use `audit` before reopening an existing plan; preserve still-valid decisions.
-- Return control after the scoped track reaches its stop condition. Do not continue into implementation.
-
-## Track handoff
-
-When moving between tracks, pass:
-
-- Objective and depth
-- Verified evidence and conflicts
-- Resolved, deferred, and active decision nodes
-- Canonical terms and affected contexts
-- Artifact paths and latest update state
-- Current highest-priority uncertainty
-
-This handoff may remain private inside one Forge run. Render it only when the user asks or another session must continue.
-
-## Minimal outputs
-
-### Resolved decision
+Use stable records internally:
 
 ```markdown
-**Decision ID:** <ID>
-**Selection:** <confirmed choice>
+**Decision:** <ID and selection>
 **Rationale:** <decisive reason>
-**Evidence:** <exact source or evidence class>
+**Evidence:** <exact source or class>
 **Consequences:** <material effects>
-**Revisit when:** <condition or never specified>
+**Revisit:** <condition>
 ```
 
-### Audit gap
+For audit gaps:
 
 ```markdown
 **Gap:** <missing, weak, or contradictory element>
 **Impact:** <what it can invalidate>
 **Evidence:** <exact reference>
-**Next decision:** <highest-leverage question>
-**Recommendation:** <specific answer>
+**Next decision:** <highest-value question and recommendation>
 ```
 
-Use these records as building blocks; do not force them into user-facing output when the full artifact template is more appropriate.
+Do not force these internal records into user-facing output when a better artifact format applies.

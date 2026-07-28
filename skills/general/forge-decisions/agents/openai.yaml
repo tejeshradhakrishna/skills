@@ -1,14 +1,13 @@
 interface:
-  display_name: Decision Forge
-  short_description: Resolve complex decisions and document the result
-  default_prompt: Use $forge-decisions to stress-test my plan one decision at a time
-    and produce durable documentation.
-  icon_small: assets/icon.svg
-  icon_large: assets/icon.svg
+  display_name: "Decision Forge"
+  short_description: "Forge and approve an execution-ready plan"
+  default_prompt: "Use $forge-decisions to let me choose the interview depth, resolve my plan one decision at a time, and produce an approval-ready plan before implementation."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"
 policy:
   allow_implicit_invocation: false
   products:
-  - chatgpt
-  - codex
-  - api
-  - atlas
+    - "chatgpt"
+    - "codex"
+    - "api"
+    - "atlas"

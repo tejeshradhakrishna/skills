@@ -21,7 +21,9 @@ npx skills update forge-decisions
 
 ## The gist
 
-I built `forge-decisions` for the moment a plan looks finished but still has soft spots. It runs a
+I built `forge-decisions` for the moment a plan looks finished but still has soft spots. First it asks how
+deep to go — a **Quick** pass over the critical calls, a **Standard** sweep to execution-ready, or a
+**Comprehensive** teardown — so the interview only spends effort where the stakes warrant it. Then it runs a
 disciplined interview — one question per turn, each with a recommended answer and the trade-off that decides
 it — and works through the plan's decisions in dependency order, hardest and most irreversible first. Run it
 on a whole plan, or point it at a single track: just resolve the open decisions, sharpen a domain's language,
@@ -49,9 +51,14 @@ and it redacts anything sensitive it runs across. When the work has its own voca
 language into a glossary; and it writes an ADR only for a choice that's genuinely hard to reverse, not for
 routine ones.
 
-Four optional controls in your request steer it: **focus** (which plan), **track** (`full`, `interview`,
-`domain`, `adr`, or `audit`), **depth** (`rapid`, `standard`, or `exhaustive`), and **delivery** (`inline`,
-`file`, or `both`).
+Up front it offers a **mode** — **Quick** (just the high-level direction and the critical blockers needed
+for a workable plan), **Standard** (that plus the low-level decisions that make the plan execution-ready), or
+**Comprehensive** (the full treatment: scenarios, risks, edge cases, operations, and documentation). The mode
+governs what's *relevant*, never a question quota — so Quick saves tokens by pruning the branches that can't
+change a workable plan, while every mode keeps going until its own bar is met, and you can switch modes
+mid-interview without losing settled decisions. Three more optional controls in your request steer the rest:
+**focus** (which plan), **track** (`full`, `interview`, `domain`, `adr`, or `audit`), and **delivery**
+(`inline`, `file`, or `both`).
 
 ## Signs it worked
 

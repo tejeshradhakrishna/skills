@@ -32,8 +32,10 @@ background.
 ![decision-forge banner](./banners/decision-forge-banner.png)
 
 I reach for **[forge-decisions](./skills/general/forge-decisions/SKILL.md)** when a plan still has soft
-spots. It interviews me one sharp question at a time — each with a recommended answer and the trade-off that
-settles it — until every material choice in the plan is resolved. What I'm left with isn't a chat log; it's
+spots. It starts by asking how deep to go — a **Quick** critical-path pass, a **Standard** execution-ready
+sweep, or a **Comprehensive** teardown — so it spends tokens only where the stakes warrant, then interviews
+me one sharp question at a time — each with a recommended answer and the trade-off that settles it — until
+every material choice at that depth is resolved. What I'm left with isn't a chat log; it's
 a decision brief, a shared-language `CONTEXT.md` where the work needs one, and ADRs for the choices that are
 genuinely hard to reverse. It never starts building; it makes the plan buildable.
 

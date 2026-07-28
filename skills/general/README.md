@@ -12,7 +12,8 @@ listed in the [top-level README](../../README.md), carried in
 
 **[forge-decisions](./forge-decisions/SKILL.md)** — *Resolve every branch.* A disciplined,
 one-question-at-a-time interview that settles a plan's open decisions and writes them down as a decision
-brief, a `CONTEXT.md`, and ADRs. Use it to make a shaky plan buildable before anything gets built.
+brief, a `CONTEXT.md`, and ADRs. Pick **Quick**, **Standard**, or **Comprehensive** to match the depth — and
+the token spend — to the stakes. Use it to make a shaky plan buildable before anything gets built.
 
 ## relay-context
 

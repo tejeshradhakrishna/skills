@@ -1,144 +1,71 @@
 ---
 name: forge-decisions
-description: Forge a plan into a decision-complete direction through one-question interviews, domain modeling, ADRs, and verified artifacts. Use only for an explicit decision-forging or plan stress-test request.
+description: Forge a plan into a decision-complete direction through a user-selected interview mode, evidence-led one-question interviews, domain modeling, adversarial testing, ADRs, and an approval-gated plan file. Use only for an explicit decision-forging, plan stress-test, decision audit, domain-modeling, or ADR request.
 ---
 
 # Decision Forge
 
-Turn an uncertain plan, design, architecture, or proposal into a verified, decision-complete direction. Resolve the highest-leverage uncertainty first, make the language precise, and leave durable documentation that another person can trust.
+Turn uncertainty into a verified, reviewable plan. Resolve the highest-value decision first, sharpen language, test consequential choices, and make no implementation change before plan approval.
 
-## Load the right protocols
+## Choose the interview mode
 
-Before the first question, select a track and read only the protocols it needs:
+If the user did not already name a mode, display this menu and wait:
 
-| Track | Use | Required references |
-| --- | --- | --- |
-| `full` | Stress-test the whole plan and document it | `interview-protocol.md`, `coverage-map.md`, `artifact-templates.md`; add domain and ADR protocols when activated |
-| `interview` | Resolve decisions without producing the full document set | `interview-protocol.md`, `coverage-map.md` |
-| `domain` | Sharpen ubiquitous language, boundaries, and rules | `interview-protocol.md`, `domain-modeling-protocol.md` |
-| `adr` | Resolve and record one architectural decision | `interview-protocol.md`, `adr-protocol.md` |
-| `audit` | Find gaps, contradictions, and weak evidence in an existing plan | `interview-protocol.md`, `coverage-map.md`, `artifact-templates.md` |
+```markdown
+Choose how deeply Decision Forge should examine the task:
 
-Read [references/composition-contract.md](references/composition-contract.md) when another workflow needs a scoped Forge track or the user asks for a reusable interview primitive.
+1. **Quick** — Ask only high-level questions and critical blockers needed to create a workable plan.
+2. **Standard — Recommended** — Cover high-level direction and the low-level decisions needed to make the plan execution-ready.
+3. **Comprehensive** — Activate the full power of Decision Forge with exhaustive analysis, scenarios, risks, edge cases, operations, and documentation.
+```
 
-## Preserve these guarantees
+Accept a number, mode name, or clear equivalent; require no other configuration. Modes control relevance and depth, never question count. Impose no question limit: Quick saves tokens by pruning nonessential branches, while every mode continues until its quality threshold is met. Permit switching modes without discarding valid decisions.
 
-- Run only after an explicit user request.
-- Ask exactly one decision question per turn and wait for its answer.
-- Include one specific recommended answer with every decision question.
-- Retrieve observable facts from accessible conversations, files, code, tools, and artifacts instead of asking the user.
-- Leave genuine choices to the user; never disguise an assumption as a decision.
-- Keep verified facts, user statements, imposed constraints, inferences, decisions, and unknowns distinct.
-- Do not implement the plan while forging it.
-- Never fabricate evidence, agreement, owners, dates, file writes, approvals, or test results.
-- Redact credentials, secrets, and irrelevant sensitive information.
-- Remain usable without another skill, vendor, filesystem, or integration.
+## Route and load progressively
 
-## Interpret the request
+Infer **Focus** and the narrowest sufficient **Track** (`full`, `interview`, `domain`, `adr`, or `audit`). Default **Delivery** to `file`; use a user-visible Markdown artifact or complete inline fallback when files are unavailable.
 
-Extract four optional controls:
+After mode selection, read [the decision engine](references/interview-protocol.md) once. Load no other reference until its branch activates:
 
-1. **Focus**: the plan, proposal, architecture, domain, or decision.
-2. **Track**: `full`, `interview`, `domain`, `adr`, or `audit`.
-3. **Depth**: `rapid`, `standard`, or `exhaustive`.
-4. **Delivery**: `inline`, `file`, or `both`.
+- [Direction and experience](references/coverage-direction.md): objective, value, scope, actors, workflow, governance
+- [System and data](references/coverage-system.md): boundaries, architecture, data, integration, migration
+- [Assurance and delivery](references/coverage-assurance.md): security, privacy, reliability, operations, validation, rollout
+- [AI and economics](references/coverage-ai-economics.md): probabilistic automation, incentives, cost, vendor exposure
+- [Domain modeling](references/domain-modeling-protocol.md): language, identity, ownership, lifecycle, invariants, contexts
+- [ADR protocol](references/adr-protocol.md): only after a durable architectural candidate emerges
+- [Artifact and approval system](references/artifact-templates.md): only for checkpoints, audit delivery, final plan production, or post-approval execution
+- [Composition contract](references/composition-contract.md): only when another workflow requests a bounded track
 
-Default to `full`, `standard`, and the safest user-visible delivery supported by the surface. Infer a clear focus from active context. Ask one scoping question only when the target itself is ambiguous.
+Never preload all references. Activate one relevant branch at a time, do not reload unchanged references, and stop loading when more guidance cannot affect the selected mode's plan quality.
 
-## Establish the evidence base
+## Guarantees
 
-Inspect relevant plans, specifications, glossaries, ADRs, tickets, code, configuration, schemas, tests, telemetry, and prior decisions before interviewing.
+- Run only after an explicit request.
+- Ask exactly one decision question per turn; give one specific recommendation and its decisive trade-off; then wait.
+- Retrieve observable facts from accessible evidence; ask only for decisions, intent, authority, or inaccessible facts.
+- Keep verified evidence, user statements, constraints, inferences, decisions, conflicts, and unknowns distinct.
+- Never fabricate evidence, agreement, owners, dates, writes, approvals, tests, or completion.
+- Remain read-only with respect to implementation while the plan is draft or under revision.
+- Treat approval as applying only to the current plan version and scope.
+- Never let an approval choice bypass platform permissions, protected actions, destructive-action safeguards, or required external authorization.
+- Redact secrets and irrelevant sensitive information.
+- Work without another skill, vendor, integration, or writable filesystem.
 
-Build a private evidence ledger using the schema in `interview-protocol.md`. Record:
+## Forge
 
-- Evidence class and exact source
-- What it supports or contradicts
-- Authority, freshness, and confidence
-- Any unresolved conflict
+1. Inspect the smallest authoritative evidence set that establishes the premise.
+2. Build the private evidence ledger, compact decision graph, and small active window.
+3. Activate only coverage needed by the selected mode's highest-value unresolved node.
+4. Ask that decision; skip discoverable facts and choices unable to change the plan.
+5. Record only the answer's state delta, test consequences and contradictions, apply proportionate scenarios or adversarial probes, and re-rank.
+6. Continue until the selected mode's stop condition is satisfied.
 
-Never treat absence of evidence as evidence of absence. When sources conflict, surface the consequential conflict and ask which source is authoritative.
+Interrupt downstream work when evidence conflicts, terminology is ambiguous, ownership or authority is unclear, or a decision violates a constraint.
 
-## Build the decision graph
+Keep state compact. Do not restate settled context or the full ledger. Update confirmed domain language immediately; batch other artifacts at meaningful checkpoints or final delivery. Use `FORGE-STATE.md` only for long or cross-session work.
 
-Create a private graph of material decisions and activate only relevant branches from `coverage-map.md`.
+## Produce and gate the plan
 
-- Model prerequisites, downstream consequences, and cross-branch dependencies.
-- Track nodes as `unexamined`, `active`, `resolved`, `deferred`, `rejected`, `contradicted`, or `superseded`.
-- Rank nodes by dependency centrality, irreversibility, risk, uncertainty, and time sensitivity.
-- Skip questions answerable from evidence and branches that cannot change the direction.
-- Add new nodes when an answer reveals a hidden dependency, ambiguity, or failure mode.
+Read the artifact and approval system. Create or update reviewable `DECISION-PLAN.md`, preserve project conventions, or use its complete visible fallback. Mark it `Draft`, assign or increment its version, summarize it, and present the defined approval choices.
 
-Do not expose the full graph unless the user asks or seeing it would materially improve a decision.
-
-## Run the forging loop
-
-For each active node:
-
-1. Verify the factual premise.
-2. Ask one precise decision question using the contract in `interview-protocol.md`.
-3. Recommend one answer and name the decisive trade-off.
-4. Wait for the user.
-5. Resolve ambiguity or contradiction on the same node before moving downstream.
-6. Record the decision, rationale, consequences, evidence, dependencies, and revisit condition.
-7. Update affected artifacts immediately.
-8. Re-rank the graph.
-
-Use adversarial probes from `coverage-map.md` when a decision is high-risk, hard to reverse, weakly evidenced, or overly optimistic. Do not ask low-value preference questions.
-
-## Deepen the domain model
-
-Activate [references/domain-modeling-protocol.md](references/domain-modeling-protocol.md) when domain language, ownership, lifecycle, invariants, or bounded contexts affect the plan.
-
-- Challenge vague, overloaded, synonymous, or conflicting terms immediately.
-- Establish opinionated canonical language and explicit avoided synonyms.
-- Define what a concept is, not how it is implemented.
-- Probe identity, ownership, boundaries, invariants, states, transitions, events, relationships, and sources of truth.
-- Test the model with concrete normal, edge, failure, concurrency, and reversal scenarios.
-- Compare the language with accessible code and artifacts; resolve disagreements.
-- Update `CONTEXT.md` or `CONTEXT-MAP.md` as terms crystallize.
-
-## Craft ADRs deliberately
-
-Read [references/adr-protocol.md](references/adr-protocol.md) before proposing or writing an ADR.
-
-Create an ADR only when the decision is hard to reverse, surprising without context, and based on a genuine trade-off. Use its qualification catalog to recognize architectural shape, integration patterns, lock-in, boundaries, deliberate deviations, invisible constraints, and non-obvious rejected alternatives. Skip routine or easily reversible choices.
-
-## Maintain durable artifacts
-
-Use [references/artifact-templates.md](references/artifact-templates.md). Create artifacts lazily and preserve project conventions.
-
-- Maintain `DECISION-BRIEF.md` for the resolved direction, scope, decisions, evidence, scenarios, risks, validation, and next action.
-- Maintain a decision register inside the brief; split it into `DECISION-REGISTER.md` only for large or multi-workstream efforts.
-- Maintain `CONTEXT.md` and `CONTEXT-MAP.md` only when domain language or multiple contexts justify them.
-- Create ADRs only through the ADR protocol.
-- Add a compact `FORGE-STATE.md` only when a long-running session needs reliable resumption.
-
-When a writable project filesystem is unavailable, create user-visible Markdown artifacts when supported. Otherwise render complete proposed files inline under their intended filenames. Never depend on an operating-system temporary directory or claim an unperformed write.
-
-## Drive to verified convergence
-
-Before declaring shared understanding, run the quality gates in `artifact-templates.md` and confirm:
-
-- Every material node is resolved or explicitly deferred with an owner or revisit condition when known.
-- No unresolved contradiction blocks a downstream decision.
-- Goals, non-goals, constraints, actors, success measures, and decision rights are clear.
-- Activated coverage branches have a disposition.
-- Canonical terms, boundaries, invariants, scenarios, and sources of truth agree.
-- Major risks, failure modes, rollout concerns, and validation expectations have evidence, mitigation, ownership, or an explicit unknown.
-- Every ADR still qualifies and agrees with the decision brief and domain language.
-- No artifact overstates evidence, certainty, completion, or approval.
-
-Then ask the user to confirm shared understanding. If they identify a gap, add it to the graph and continue.
-
-## Finish
-
-After confirmation:
-
-1. Summarize the resolved direction and decisive trade-offs.
-2. Separate confirmed, rejected, deferred, contradicted, and superseded decisions.
-3. Link or render the artifacts created or updated.
-4. State the first safe next action and its owner when known.
-5. Name the most important residual risk or assumption.
-6. State which track and depth were completed.
-
-Do not start implementation unless the user separately requests it.
+Do not implement while the user revises or rejects the plan. A material plan change creates a new version and requires fresh approval. After approval, execute only according to the selected approval mode and the approved scope.
