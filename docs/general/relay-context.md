@@ -45,10 +45,11 @@ assumptions, inferences, and unknowns visibly separate from verified fact. Exact
 identifiers, dates, and owners are carried over as-is; secrets, tokens, and sensitive data are stripped and
 replaced with plain markers — never partially preserved.
 
-Steer it with **focus** (what the next session tackles), **depth** (`compact`, `standard`, or `deep`), and
-**delivery** (`inline`, `file`, or `both`). Hand it an earlier brief and it updates that in place —
-re-checking the facts, keeping what still holds, and swapping out what's gone stale instead of piling on a
-second summary.
+Steer it with **focus** (what the next session tackles) and **delivery** (`inline`, `file`, or `both`).
+There's no depth dial to set: it sizes the brief to the work on its own, keeping only the state that affects
+safe continuation and leaving the rest out — so the handoff stays lean without you tuning it. Hand it an
+earlier brief and it updates that in place — re-checking the facts, keeping what still holds, and swapping
+out what's gone stale instead of piling on a second summary.
 
 ## Signs it worked
 
