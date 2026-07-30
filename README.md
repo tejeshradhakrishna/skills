@@ -96,16 +96,21 @@ npx skills add tejeshradhakrishna/skills --skill=forge-decisions
 npx skills update relay-context
 ```
 
-**ChatGPT (Chat & Work) and Claude (Chat & Cowork)** — these take an uploaded package. Download a skill's
-ZIP from [Releases](https://github.com/tejeshradhakrishna/skills/releases), or build them yourself:
+**ChatGPT (Chat & Work) and Claude (Chat & Cowork)** — these take an uploaded ZIP. The quickest route is to
+download a ready-made package straight from this repo and add it through the platform's custom-skill /
+custom-GPT screen:
+
+- **[forge-decisions.zip](./skills/general/forge-decisions.zip)**
+- **[relay-context.zip](./skills/general/relay-context.zip)**
+
+Each archive is one complete, standalone skill (`SKILL.md`, `agents/openai.yaml`, `references/`, `assets/`).
+Want a versioned build instead? Grab one from
+[Releases](https://github.com/tejeshradhakrishna/skills/releases), or build it yourself:
 
 ```bash
 npm install
-npm run package   # writes dist/forge-decisions-v0.1.0.zip and dist/relay-context-v0.1.0.zip
+npm run package   # writes dist/forge-decisions-v0.2.0.zip and dist/relay-context-v0.2.0.zip
 ```
-
-Then add the ZIP through the platform's custom-skill / custom-GPT screen. Each archive is one complete,
-standalone skill.
 
 ## Using them
 
@@ -121,7 +126,7 @@ They stay quiet until asked, and they say so plainly whenever something can't be
 ## Inside the repo
 
 ```
-skills/general/         the skills themselves (forge-decisions, relay-context)
+skills/general/         the skills themselves (forge-decisions, relay-context) + their ready-to-upload ZIPs
 docs/general/           a "when would I use this" page per skill
 banners/                the hero art for each skill
 .claude-plugin/         plugin + marketplace manifests for Claude Code

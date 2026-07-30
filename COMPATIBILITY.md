@@ -41,8 +41,12 @@ Both extracted ZIP packages passed all compatibility checks.
 
 ## Packaging for upload-based platforms
 
-ChatGPT (Chat & Work) and Claude (Chat & Cowork) install a skill from an uploaded ZIP. Build the ZIPs from
-source:
+ChatGPT (Chat & Work) and Claude (Chat & Cowork) install a skill from an uploaded ZIP. Ready-made packages
+live in the repo — [`skills/general/forge-decisions.zip`](./skills/general/forge-decisions.zip) and
+[`skills/general/relay-context.zip`](./skills/general/relay-context.zip) — so most users can download one and
+upload it directly, no build step required.
+
+To produce a versioned build from source instead:
 
 ```bash
 npm install        # first time only, to fetch dev tooling
@@ -52,8 +56,8 @@ npm run package    # or: bash scripts/package-skills.sh
 This writes one self-contained archive per skill to `dist/`:
 
 ```
-dist/forge-decisions-v0.1.0.zip
-dist/relay-context-v0.1.0.zip
+dist/forge-decisions-v0.2.0.zip
+dist/relay-context-v0.2.0.zip
 ```
 
 Each archive contains the complete portable skill folder — `SKILL.md`, `agents/openai.yaml`, everything

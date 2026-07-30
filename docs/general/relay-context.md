@@ -14,6 +14,10 @@ npx skills add tejeshradhakrishna/skills --skill=relay-context
 npx skills update relay-context
 ```
 
+**Upload platforms (ChatGPT Chat & Work, Claude Chat & Cowork)** — download the ready-made
+[relay-context.zip](../../skills/general/relay-context.zip) and add it on the platform's custom-skill /
+custom-GPT screen. No build step needed.
+
 [Source](https://github.com/tejeshradhakrishna/skills/tree/main/skills/general/relay-context)
 
 **Runs on** ChatGPT Chat · ChatGPT Work · Codex · Claude Chat · Claude Cowork · Claude Code. See

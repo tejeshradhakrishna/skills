@@ -14,6 +14,10 @@ npx skills add tejeshradhakrishna/skills --skill=forge-decisions
 npx skills update forge-decisions
 ```
 
+**Upload platforms (ChatGPT Chat & Work, Claude Chat & Cowork)** — download the ready-made
+[forge-decisions.zip](../../skills/general/forge-decisions.zip) and add it on the platform's custom-skill /
+custom-GPT screen. No build step needed.
+
 [Source](https://github.com/tejeshradhakrishna/skills/tree/main/skills/general/forge-decisions)
 
 **Runs on** ChatGPT Chat · ChatGPT Work · Codex · Claude Chat · Claude Cowork · Claude Code. See
