@@ -2,12 +2,12 @@
 
 Recognize free text as the next-session focus, an explicitly identified path as the destination, and a request to update as an instruction to revise the prior relay. A path mentioned only as a project artifact is not a destination.
 
-Choose delivery in this order:
+Return the complete brief inline by default. Create a file only when explicitly requested. For file delivery, choose in this order:
 
 1. Explicit destination.
 2. A user-visible output location outside source control.
 3. The OS temporary directory when the available writable location is a source tree.
-4. The complete brief inline.
+4. The complete brief inline if writing fails.
 
 Use `relay-context-YYYYMMDD-HHMM.md` when naming a new file. Obtain timestamps from the environment; omit rather than guess. Never commit the relay unless explicitly requested.
 

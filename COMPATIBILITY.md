@@ -31,9 +31,10 @@ Both extracted ZIP packages passed all compatibility checks.
 - **No platform-specific workflow dependencies.** The instructions never assume a particular product's
   tools, a specific operating system, or an OS temporary directory. Behaviour is described in terms of
   capabilities ("a writable project filesystem", "a user-visible artifact surface"), not brand names.
-- **Inline + file-based fallbacks.** When a writable filesystem or artifact surface is available, the
-  skills produce durable files; when it isn't (e.g. a chat-only surface), they return the complete result
-  inline instead. They never claim a draft was written when it wasn't.
+- **Inline + file-based delivery.** Each skill adapts to the surface it runs on: `forge-decisions` writes
+  durable artifacts when a writable filesystem is available and falls back to inline output when it isn't;
+  `relay-context` returns its brief inline by default and writes a file only when you ask for one. Neither
+  ever claims a draft was written when it wasn't.
 - **Evidence integrity, everywhere.** Both skills refuse to fabricate work, tests, approvals, owners,
   dates, or results, and both redact secrets and credentials — the same discipline regardless of host.
 - **Vendor-neutral output.** Deliverables are portable Markdown that stays usable even if optional links or

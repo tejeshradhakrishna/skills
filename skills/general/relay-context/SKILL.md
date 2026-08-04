@@ -25,6 +25,6 @@ Never preload references. Read matching components; when unsure, load the compon
 
 ## Deliver
 
-Use concise sections; omit irrelevant chronology. Honor an explicit destination; otherwise use a user-visible output location outside source control, then the OS temporary directory, then return the complete brief inline. Never commit unless requested.
+Use concise sections and omit irrelevant chronology. Return the complete brief inline by default. Create a file only when the user explicitly requests one; honor an explicit destination and never commit unless requested.
 
 Apply a cold-start test: the next agent must know the goal, true state, next action, constraints, and stop condition. Return only the brief or link and material verification limitations.
